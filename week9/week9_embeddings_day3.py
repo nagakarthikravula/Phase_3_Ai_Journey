@@ -43,6 +43,7 @@ refund including shipping costs, but must report the issue within 7 days
 of delivery with photographic evidence of the damage.
 """
 
+
 print("Total characters in document:", len(document))
 
 chunks = chunk_text(document, 200, 54)
