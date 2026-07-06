@@ -78,6 +78,7 @@ for x,ques in enumerate(questions):
     print()
     print("******* END ********")
 
+
 sections = document.split("Section")
 for i, s in enumerate(sections):
   print(f"Section {i} length: {len(s)} characters")
