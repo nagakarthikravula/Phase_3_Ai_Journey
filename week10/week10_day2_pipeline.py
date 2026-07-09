@@ -97,22 +97,25 @@ while True:
     ques = input("Enter Your Question (Type 'exit' to End): ")
     if ques.lower() != 'exit':
         main_results = retrieve(ques)
-        response = clientg.models.generate_content(
-            model= "gemini-3-flash-preview",
-            contents=f'''User Question: {ques}
-            Context:
-            Page {main_results['metadatas'][0][0]['page']}: {main_results['documents'][0][0]}
-            Page {main_results['metadatas'][0][1]['page']}: {main_results['documents'][0][1]}
+        if main_results['distances'][0][0] > 1:
+            print("I couldn't find relevant information in the document for your question.")
+        else:
+            response = clientg.models.generate_content(
+                model= "gemini-3-flash-preview",
+                contents=f'''User Question: {ques}
+                Context:
+                Page {main_results['metadatas'][0][0]['page']}: {main_results['documents'][0][0]}
+                Page {main_results['metadatas'][0][1]['page']}: {main_results['documents'][0][1]}
 
-            Answer the question using only the context above. 
-            Cite which page your answer came from.''',
-            config=rude_config
-        )
+                Answer the question using only the context above. 
+                Cite which page your answer came from.''',
+                config=rude_config
+            )
 
-        print("*"*20)
-        print("*"*9 + "Ai Answer" + "*"*9)
-        print("Question: ",ques)
-        print(response.text)
+            print("*"*20)
+            print("*"*9 + "Ai Answer" + "*"*9)
+            print("Question: ",ques)
+            print(response.text)
     else:
         print("*****Program End*****")
         break
