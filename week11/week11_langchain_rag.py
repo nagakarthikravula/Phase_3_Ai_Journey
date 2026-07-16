@@ -11,6 +11,7 @@ api_key = os.getenv("GEMINI_API_KEY")
 
 clientg = genai.Client(api_key=api_key)
 
+
 rude_config = genai.types.GenerateContentConfig(
       system_instruction= '''You are a knowledgeable World War I history assistant.
 
