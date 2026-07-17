@@ -197,5 +197,3 @@ if st.session_state.processed:
                 ''',
                 config=rude_config
                 )
-
-
